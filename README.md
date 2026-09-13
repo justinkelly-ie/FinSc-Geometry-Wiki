@@ -16,7 +16,7 @@
 - **Verification:** QuickCheck property tests validating quadrance and spread conservation, metric signature invariance, and `MonadicMetricSpace` bound checks.
 
 ### 2. `Library/Wiki/Main.idr`
-- **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 3 (`lgeometry-wiki`).
+- **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 3 (`geometry-wiki`).
 
 ---
 
@@ -26,7 +26,7 @@ To compile the literate verification suite and execute the test runner binary:
 
 ```bash
 idris2 --build Idris2-Geometry-Wiki.ipkg
-./build/exec/lgeometry-wiki
+./build/exec/geometry-wiki
 ```
 
 ---

@@ -18,4 +18,4 @@ modules = Wiki.Generators
         , Wiki.Main
 
 main = Wiki.Main
-executable = lgeometry-wiki
+executable = geometry-wiki
