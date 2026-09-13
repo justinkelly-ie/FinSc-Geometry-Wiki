@@ -14,6 +14,7 @@ sourcedir = "Library"
 
 modules = Wiki.Generators
         , Wiki.GeometryScaleTransformSpec
+        , Wiki.GeometryMacroAudit
         , Wiki.Main
 
 main = Wiki.Main
