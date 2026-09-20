@@ -6,7 +6,7 @@ module Wiki.ChromoCategorySpec
 import Data.List
 import Core.BoxInt
 import Core.VexelMaxel
-import Math.FourGeometries
+import Core
 import Math.RationalTrig
 import Math.ChromoCategory
 import Wiki.Generators
