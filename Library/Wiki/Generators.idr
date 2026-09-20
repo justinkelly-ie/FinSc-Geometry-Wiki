@@ -39,3 +39,7 @@ qc f = quickCheck (MkFn f)
 public export
 qc2 : (Arbitrary a, Show a, Arbitrary b, Show b, Testable prop) => (a -> b -> prop) -> QCRes
 qc2 f = quickCheck (MkFn (\x => MkFn (f x)))
+
+public export
+qc3 : (Arbitrary a, Show a, Arbitrary b, Show b, Arbitrary c, Show c, Testable prop) => (a -> b -> c -> prop) -> QCRes
+qc3 f = quickCheck (MkFn (\x => MkFn (\y => MkFn (f x y))))
