@@ -9,10 +9,10 @@ module Wiki.LatticeStreamSpec
 
 import Data.List
 import Data.Fuel
-import Core.Order.Preorder
-import Math.OnSeq.FusedStream
-import Geometry.LatticeTopology
-import Geometry.LatticeStream
+import Stage1.Order.Preorder
+import Stage0.OnSeq.FusedStream
+import Stage0.LatticeTopology
+import Stage0.LatticeStream
 
 %default total
 

@@ -11,9 +11,9 @@ Documents and verifies the **Group Homomorphism**, **Total Fuel-Driven Streaming
 ```idris
 module Wiki.SpatialProjectionSpec
 
-import Math.OnSeq.FusedStream
-import Core.ScalePipeline.StreamAdjunction
-import Math.SpatialProjection
+import Stage0.BoxInt
+import Stage0.OnSeq.FusedStream
+import Stage1.SpatialProjection
 import Data.Fuel
 import Wiki.Generators
 
@@ -34,14 +34,14 @@ public export
 prop_projectStreamOnBoxel : Bool
 prop_projectStreamOnBoxel =
   let
-    maxel1 = MkMaxel 1 2 Elliptic
-    maxel2 = MkMaxel 2 1 Elliptic
-    strm = multiplyMaxels (stream [maxel1]) (stream [maxel2])
+    maxel1 = MkMaxelOp 1 2 Elliptic
+    maxel2 = MkMaxelOp 2 1 Elliptic
+    strm = MkStream (\case [] => Done; (x::xs) => Yield x xs) [maxel1, maxel2]
     b0 = MkBoxel (0, 0, 0) 1
     trans = projectMaxelStream strm b0
   in
     case trans.runTransition of
-      MkMonoidView (MkWave [ (MkBoxel (x, y, z) int, _) ]) =>
+      MkMonoidView (MkWave [ (MkBoxel (x, y, z) _, _) ]) =>
         x >= 0 && x < 8 && y >= 0 && y < 8 && z >= 0 && z < 8
       _ => False
 
@@ -50,8 +50,8 @@ public export
 prop_projectFueledStreamCheck : Bool
 prop_projectFueledStreamCheck =
   let
-    maxel1 = MkMaxel 1 2 Elliptic
-    strm = stream [maxel1]
+    maxel1 = MkMaxelOp 1 2 Elliptic
+    strm = MkStream (\case [] => Done; (x::xs) => Yield x xs) [maxel1]
     b0 = MkBoxel (1, 2, 3) 5
     transDry = projectFueledMaxelStream Dry strm b0
     transLimit = projectFueledMaxelStream (limit 10) strm b0

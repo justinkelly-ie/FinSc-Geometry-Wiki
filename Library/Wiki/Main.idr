@@ -6,7 +6,8 @@ import Wiki.GeometryMacroAudit
 import Wiki.ChromoCategorySpec
 import Wiki.SpatialProjectionSpec
 import Wiki.LatticeStreamSpec
-import Geometry.LatticeTopology
+import Wiki.ChromogeometricScaleSpec
+import Stage0.LatticeTopology
 
 %default total
 
@@ -43,8 +44,16 @@ main = do
      else do
        putStrLn "   [FAILED] Lattice Stream Specs Failed!"
        exitWith (ExitFailure 1)
-  putStrLn "4. Compile-Time %macro Reflection Proof Catalog:"
+  putStrLn "5. Deforested 3-Metric Chromogeometric Triad Transducer Specs:"
+  p5 <- auditChromogeometricScaleSpecProof
+  if p5
+     then putStrLn "   [PASSED] Deforested Chromogeometric Triad Transducers & Quadrance Identity Verified!"
+     else do
+       putStrLn "   [FAILED] Chromogeometric Triad Stream Specs Failed!"
+       exitWith (ExitFailure 1)
+  putStrLn "6. Compile-Time %macro Reflection Proof Catalog:"
   putStrLn ("   [PASSED] Geometric Invariants (Hyperbolic Bit Duality, Clifford, Holographic Boundary): " ++ (if allTrue Wiki.GeometryMacroAudit.geometryMacroWitnesses then "PASSED ✅" else "FAILED ❌"))
   putStrLn "========================================================"
   putStrLn "  GEOMETRY WIKI VERIFICATION COMPLETE: ALL PASSED!"
   putStrLn "========================================================"
+

@@ -1,9 +1,9 @@
 module Wiki.Generators
 
 import public QuickCheck
-import Geometry.LatticeTopology
-import Math.LinAlgebra.TernaryClassifier
-import Core.BoxInt
+import Stage0.LatticeTopology
+import Stage1.LinAlgebra.TernaryClassifier
+import Stage0.BoxInt
 
 %default total
 
@@ -31,3 +31,12 @@ Arbitrary Coord3D where
 
   coarbitrary (MkCoord3D x y z) gen =
     coarbitrary x (coarbitrary y (coarbitrary z gen))
+
+public export
+Arbitrary BoxInt where
+  arbitrary = do
+    n <- arbitrary {a=Integer}
+    pure (intToBoxInt n)
+  coarbitrary (MkBoxInt val) gen =
+    coarbitrary val gen
+

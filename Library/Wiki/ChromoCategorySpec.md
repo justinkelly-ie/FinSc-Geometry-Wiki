@@ -4,11 +4,10 @@
 module Wiki.ChromoCategorySpec
 
 import Data.List
-import Core.BoxInt
-import Core.VexelMaxel
-import Core
-import Math.RationalTrig
-import Math.ChromoCategory
+import Stage0.BoxInt
+import Stage1.VexelMaxel
+import Stage1.RationalTrig
+import Stage1.ChromoCategory
 import Wiki.Generators
 
 %default total
@@ -94,8 +93,8 @@ auditChromoCategorySpecProof = do
   let r4 = qc2 prop_chromoQuadranceBlue
   let r5 = qc2 prop_chromoQuadranceRed
   let r6 = qc2 prop_chromoQuadranceGreen
-  let t6_8_ok = Math.RationalTrig.auditThreeFoldChromogeometryProof
-  let twoLTTQuadreaOk = Math.RationalTrig.auditQuadreaArchimedesPathProof
+  let t6_8_ok = Stage1.RationalTrig.auditThreeFoldChromogeometryProof
+  let twoLTTQuadreaOk = Stage1.RationalTrig.auditQuadreaArchimedesPathProof
   pure ( r1.pass == Just True 
       && r2.pass == Just True 
       && r3.pass == Just True 

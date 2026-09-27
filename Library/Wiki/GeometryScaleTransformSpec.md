@@ -14,11 +14,11 @@ Layer 2 Geometry constructs discrete metric state spaces with unified applicativ
 ```idris
 module Wiki.GeometryScaleTransformSpec
 
-import Core.BoxInt
-import Core.ScaleTransform
-import Geometry.LatticeTopology
-import Geometry.MonadicMetricSpace
-import Math.LinAlgebra.TernaryClassifier
+import Stage0.BoxInt
+import Stage1.ScaleTransform
+import Stage0.LatticeTopology
+import Stage1.MonadicMetricSpace
+import Stage1.LinAlgebra.TernaryClassifier
 import Wiki.Generators
 import Data.Fin
 import public QuickCheck

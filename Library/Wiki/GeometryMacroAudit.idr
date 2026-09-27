@@ -1,7 +1,7 @@
 module Wiki.GeometryMacroAudit
 
-import Geometry.InformationGeometry
-import Geometry.GrassmannCalculus
+import Stage1.InformationGeometry
+import Stage1.GrassmannCalculus
 import Language.Reflection
 
 %default total
@@ -23,7 +23,7 @@ auditCatalogWitnesses targets = auditWitness (allTrue targets)
 
 public export
 auditHyperbolicBitDualityProofExport : Bool
-auditHyperbolicBitDualityProofExport = Geometry.InformationGeometry.auditHyperbolicBitDualityProof
+auditHyperbolicBitDualityProofExport = Stage1.InformationGeometry.auditHyperbolicBitDualityProof
 
 public export
 %macro
@@ -32,7 +32,7 @@ auditHyperbolicBitDuality = auditWitness auditHyperbolicBitDualityProofExport
 
 public export
 auditCliffordCompactnessDualityProofExport : Bool
-auditCliffordCompactnessDualityProofExport = Geometry.InformationGeometry.auditCliffordCompactnessDualityProof
+auditCliffordCompactnessDualityProofExport = Stage1.InformationGeometry.auditCliffordCompactnessDualityProof
 
 public export
 %macro
@@ -41,7 +41,7 @@ auditCliffordCompactnessDuality = auditWitness auditCliffordCompactnessDualityPr
 
 public export
 auditHolographicBoundaryDualityProofExport : Bool
-auditHolographicBoundaryDualityProofExport = Geometry.InformationGeometry.auditHolographicBoundaryDualityProof
+auditHolographicBoundaryDualityProofExport = Stage1.InformationGeometry.auditHolographicBoundaryDualityProof
 
 public export
 %macro
