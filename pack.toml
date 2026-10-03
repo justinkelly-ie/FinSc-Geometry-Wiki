@@ -18,10 +18,10 @@ type = "local"
 path = "../FinSc-Multiset-Transform"
 ipkg = "FinSc-Multiset-Transform.ipkg"
 
-[custom.all.FinSc-Multiset-Ternary]
+[custom.all.FinSc-Radix-Ternary]
 type = "local"
-path = "../FinSc-Multiset-Ternary"
-ipkg = "FinSc-Multiset-Ternary.ipkg"
+path = "../FinSc-Radix-Ternary"
+ipkg = "FinSc-Radix-Ternary.ipkg"
 
 [custom.all.FinSc-Geometry]
 type = "local"
