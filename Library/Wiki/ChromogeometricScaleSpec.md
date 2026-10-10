@@ -13,6 +13,7 @@ import Stage0.CosmicScaleTransform
 import Stage0.OnSeq.FusedStream
 import Stage0.NarayAlphabet
 import Stage0.LatticeTopology
+import Stage1.RationalTrig
 import Data.Fuel
 import Wiki.Generators
 import public QuickCheck
@@ -48,6 +49,13 @@ prop_triadFusedIdentityCheck =
       strm = stream coords
   in fusedChromogeometricTriadIdentityCheck (limit (length coords)) strm
 
+||| Property 4: Exact Integer Spread Companion Maxel Diagonal Ratio Theorem
+public export
+prop_spreadCompanionDiagonalRatio : Bool
+prop_spreadCompanionDiagonalRatio =
+  auditSpreadDiagonalRatioProof (intToBoxInt 4) (intToBoxInt 3) &&
+  auditSpreadDiagonalRatioProof (intToBoxInt 5) (intToBoxInt 12)
+
 ||| QuickCheck / Direct Suite Execution Runner for Chromogeometric Scale Spec
 public export
 auditChromogeometricScaleSpecProof : IO Bool
@@ -55,8 +63,10 @@ auditChromogeometricScaleSpecProof = do
   let r1 = QuickCheck True prop_triadQuadrancePrecision
   let p2 = prop_triadDeforestedStreamEquivalence
   let p3 = prop_triadFusedIdentityCheck
+  let p4 = prop_spreadCompanionDiagonalRatio
   putStrLn $ "   -> Checking Wildberger 3-Metric Triad Quadrance Identity (QuickCheck): " ++ (if r1 then "PASSED" else "FAILED")
   putStrLn $ "   -> Checking Deforested Triad Transducer Stream Equivalence: " ++ (if p2 then "PASSED" else "FAILED")
   putStrLn $ "   -> Checking Zero-Heap Deforested Triad Identity Accumulation: " ++ (if p3 then "PASSED" else "FAILED")
-  pure (r1 && p2 && p3)
+  putStrLn $ "   -> Checking Exact Integer Spread Companion Diagonal Ratio: " ++ (if p4 then "PASSED" else "FAILED")
+  pure (r1 && p2 && p3 && p4)
 ```
