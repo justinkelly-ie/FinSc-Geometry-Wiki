@@ -92,17 +92,11 @@ record VerifiedLatticeState where
   quadranceGreen : Nat
   0 invariancePrf : ChromogeometricInvarianceWitness quadranceBlue quadranceRed quadranceGreen
 
-||| $O(1)$ allocation deforested chromogeometric lattice stream transducer using fusedHylomorphism
-public export covering
+||| $O(1)$ allocation deforested chromogeometric lattice stream transducer using foldStreamNat
+public export
 fusedChromogeometricLatticeStream : Fuel -> List (Nat, Nat, Nat) -> Nat
 fusedChromogeometricLatticeStream f items =
-  fusedHylomorphism f
-    (\st => case st of
-              [] => Done
-              (qb, qr, qg) :: rest => Yield (qb + qr + qg) rest)
-    (\val, acc => val + acc)
-    0
-    items
+  foldStreamNat (length items) (\acc, (qb, qr, qg) => acc + qb + qr + qg) 0 (stream items)
 
 ------------------------------------------------------------------------
 -- DEFORESTED CHROMOGEOMETRIC LATTICE SPREAD TRANSDUCERS
@@ -121,15 +115,9 @@ Eq SpreadStep where
     id1 == id2 && s1 == s2
 
 ||| O(1) allocation deforested stream transducer evaluating total accumulated spread sum across lattice steps.
-public export covering
+public export
 fusedLatticeSpreadStream : Fuel -> List (Nat, Nat, Nat) -> Nat
 fusedLatticeSpreadStream f steps =
-  fusedHylomorphism f
-    (\(idx, st) => case st of
-                     [] => Done
-                     (s1, s2, s3) :: rest => Yield (MkSpreadStep idx (s1 + s2 + s3)) (idx + 1, rest))
-    (\step, acc => spreadSum step + acc)
-    0
-    (1, steps)
+  foldStreamNat (length steps) (\acc, (s1, s2, s3) => acc + s1 + s2 + s3) 0 (stream steps)
 
 ```

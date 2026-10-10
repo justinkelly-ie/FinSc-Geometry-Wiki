@@ -51,7 +51,7 @@ prop_projectFueledStreamCheck : Bool
 prop_projectFueledStreamCheck =
   let
     maxel1 = MkMaxelOp 1 2 Elliptic
-    strm = MkStream (\case [] => Done; (x::xs) => Yield x xs) [maxel1]
+    strm = MkStream (\case [] => Done; (x::xs) => Yield x xs) (the (List MaxelOperator) [maxel1])
     b0 = MkBoxel (1, 2, 3) 5
     transDry = projectFueledMaxelStream Dry strm b0
     transLimit = projectFueledMaxelStream (limit 10) strm b0

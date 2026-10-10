@@ -29,27 +29,27 @@ prop_triadQuadrancePrecision = forAll {a = (Stage0.BoxInt.BoxInt, Stage0.BoxInt.
   in (qE * qE) == ((qH * qH) + (qP * qP))))
 
 ||| Property 2: Deforested Triad Transducer Stream Equivalence
-public export covering
+public export
 prop_triadDeforestedStreamEquivalence : Bool
 prop_triadDeforestedStreamEquivalence =
   let coords = [(intToBoxInt 3, intToBoxInt 4), (intToBoxInt 5, intToBoxInt 12)]
       strm = stream coords
-      res = runFueledStream (limit 10) (streamChromogeometricTriad strm)
+      res = runFueledStream substrateFuel (streamChromogeometricTriad strm)
       expected = [ (intToBoxInt 25, intToBoxInt (-7), intToBoxInt 24)
                  , (intToBoxInt 169, intToBoxInt (-119), intToBoxInt 120)
                  ]
   in res == expected
 
 ||| Property 3: Zero-Heap Deforested Triad Identity Accumulation Check
-public export covering
+public export
 prop_triadFusedIdentityCheck : Bool
 prop_triadFusedIdentityCheck =
   let coords = [(intToBoxInt 1, intToBoxInt 2), (intToBoxInt 4, intToBoxInt 3)]
       strm = stream coords
-  in fusedChromogeometricTriadIdentityCheck (limit 100) strm
+  in fusedChromogeometricTriadIdentityCheck (limit (length coords)) strm
 
 ||| QuickCheck / Direct Suite Execution Runner for Chromogeometric Scale Spec
-public export covering
+public export
 auditChromogeometricScaleSpecProof : IO Bool
 auditChromogeometricScaleSpecProof = do
   let r1 = QuickCheck True prop_triadQuadrancePrecision
