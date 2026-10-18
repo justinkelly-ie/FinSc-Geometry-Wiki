@@ -1,6 +1,7 @@
 module Wiki.Main
 
 import System
+import Geometry
 import Wiki.GeometryScaleTransformSpec
 import Wiki.GeometryMacroAudit
 import Wiki.ChromoCategorySpec
@@ -53,6 +54,23 @@ main = do
        exitWith (ExitFailure 1)
   putStrLn "6. Compile-Time %macro Reflection Proof Catalog:"
   putStrLn ("   [PASSED] Geometric Invariants (Hyperbolic Bit Duality, Clifford, Holographic Boundary): " ++ (if allTrue Wiki.GeometryMacroAudit.geometryMacroWitnesses then "PASSED ✅" else "FAILED ❌"))
+  putStrLn "7. Fano Plane P^2(F_2) & Octonion Non-Associativity Specs:"
+  let pFano = Stage1.FanoOctonion.auditFanoIncidenceCount &&
+              Stage1.FanoOctonion.auditOctonionNonAssociativity
+  if pFano
+     then putStrLn "   [PASSED] Fano Incidence (21 Pixels) & Octonion Non-Associativity ([e1, e2, e3] = -2 e6) Verified!"
+     else do
+       putStrLn "   [FAILED] Fano Plane / Octonion Specs Failed!"
+       exitWith (ExitFailure 1)
+  putStrLn "8. Pentagonal Fibonacci & Z_5 Cyclic Permutation Specs:"
+  let pFib = Stage1.PentagonalFibonacci.auditFibonacciSequence &&
+             Stage1.PentagonalFibonacci.auditPentagonal5CycleClosure &&
+             Stage1.PentagonalFibonacci.auditGoldenRatio13Smooth
+  if pFib
+     then putStrLn "   [PASSED] Fibonacci Sequence (up to 13), Z_5 5-Cycle Closure & Golden Ratio (21/13) Verified!"
+     else do
+       putStrLn "   [FAILED] Pentagonal Fibonacci Specs Failed!"
+       exitWith (ExitFailure 1)
   putStrLn "========================================================"
   putStrLn "  GEOMETRY WIKI VERIFICATION COMPLETE: ALL PASSED!"
   putStrLn "========================================================"
