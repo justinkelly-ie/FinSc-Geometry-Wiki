@@ -5,7 +5,8 @@ module Wiki.ChromoCategorySpec
 
 import Data.List
 import Stage0.BoxInt
-import Stage1.VexelMaxel
+import Stage1.Carrier.Maxel
+import Stage1.Basis.Coordinate
 import Stage1.RationalTrig
 import Stage1.ChromoCategory
 import Wiki.Generators
