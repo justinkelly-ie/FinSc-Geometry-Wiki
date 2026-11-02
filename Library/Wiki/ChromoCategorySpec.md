@@ -21,9 +21,9 @@ $$\forall M_1, M_2, M_3 \in \text{Maxel}, \quad (M_3 \circ M_2) \circ M_1 \equiv
 public export
 prop_chromoComposeAssociative : Integer -> Integer -> Integer -> Bool
 prop_chromoComposeAssociative w1 w2 w3 =
-  let m1 = MkMaxel [(MkPixel 1 1, intToBoxInt w1)]
-      m2 = MkMaxel [(MkPixel 1 1, intToBoxInt w2)]
-      m3 = MkMaxel [(MkPixel 1 1, intToBoxInt w3)]
+  let m1 = singletonCell (mkPixel 1 1) (intToBoxInt w1)
+      m2 = singletonCell (mkPixel 1 1) (intToBoxInt w2)
+      m3 = singletonCell (mkPixel 1 1) (intToBoxInt w3)
       lhs = composeChromo (composeChromo m3 m2) m1
       rhs = composeChromo m3 (composeChromo m2 m1)
   in canonicalizeMaxel lhs == canonicalizeMaxel rhs
@@ -33,7 +33,7 @@ prop_chromoComposeAssociative w1 w2 w3 =
 public export
 prop_chromoIdentityLeft : Integer -> Bool
 prop_chromoIdentityLeft w =
-  let m = MkMaxel [(MkPixel 1 1, intToBoxInt w), (MkPixel 2 2, intToBoxInt (w + 1))]
+  let m = singletonCell (mkPixel 1 1) (intToBoxInt w) <+> singletonCell (mkPixel 2 2) (intToBoxInt (w + 1))
       res = composeChromo idChromo m
   in canonicalizeMaxel res == canonicalizeMaxel m
 ```
@@ -42,7 +42,7 @@ prop_chromoIdentityLeft w =
 public export
 prop_chromoIdentityRight : Integer -> Bool
 prop_chromoIdentityRight w =
-  let m = MkMaxel [(MkPixel 1 1, intToBoxInt w), (MkPixel 2 2, intToBoxInt (w + 1))]
+  let m = singletonCell (mkPixel 1 1) (intToBoxInt w) <+> singletonCell (mkPixel 2 2) (intToBoxInt (w + 1))
       res = composeChromo m idChromo
   in canonicalizeMaxel res == canonicalizeMaxel m
 ```
@@ -55,7 +55,7 @@ $$\text{quadranceVexelSpace}(S, v) \equiv \langle v, v \rangle_{g_{\text{color}}
 public export
 prop_chromoQuadranceBlue : Integer -> Integer -> Bool
 prop_chromoQuadranceBlue x y =
-  let v = MkVexel [(MkUnixel 1, intToBoxInt x), (MkUnixel 2, intToBoxInt y)]
+  let v = singletonCell (mkUnixel 1) (intToBoxInt x) <+> singletonCell (mkUnixel 2) (intToBoxInt y)
       sp = defaultSpace 2 Blue
       q = quadranceVexelSpace sp v
   in q == intToBoxInt (x * x + y * y)
@@ -65,7 +65,7 @@ prop_chromoQuadranceBlue x y =
 public export
 prop_chromoQuadranceRed : Integer -> Integer -> Bool
 prop_chromoQuadranceRed x y =
-  let v = MkVexel [(MkUnixel 1, intToBoxInt x), (MkUnixel 2, intToBoxInt y)]
+  let v = singletonCell (mkUnixel 1) (intToBoxInt x) <+> singletonCell (mkUnixel 2) (intToBoxInt y)
       sp = defaultSpace 2 Red
       q = quadranceVexelSpace sp v
   in q == intToBoxInt (x * x - y * y)
@@ -75,7 +75,7 @@ prop_chromoQuadranceRed x y =
 public export
 prop_chromoQuadranceGreen : Integer -> Integer -> Bool
 prop_chromoQuadranceGreen x y =
-  let v = MkVexel [(MkUnixel 1, intToBoxInt x), (MkUnixel 2, intToBoxInt y)]
+  let v = singletonCell (mkUnixel 1) (intToBoxInt x) <+> singletonCell (mkUnixel 2) (intToBoxInt y)
       sp = defaultSpace 2 Green
       q = quadranceVexelSpace sp v
   in q == intToBoxInt (2 * x * y)
