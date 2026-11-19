@@ -1,15 +1,22 @@
-# 📐 Geometry ScaleTransform & Monadic Metric Space Homomorphism Specification
+# 📐 Geometry `ScaleTransform` & `MetricEnvelopeSpace` Specification
 
-Documents and verifies 3-metric chromogeometry ($\text{Red}, \text{Green}, \text{Blue}$ metrics), 3D coordinate bijections ($\mathbf{Fin}_{27} \cong \text{Coord3D}$), exact non-linear rational quadrance/spread invariants, and the `MonadicMetricSpace` applicative envelope homomorphism using QuickCheck property testing.
+Documents and verifies 3-metric chromogeometry ($\text{Red}, \text{Green}, \text{Blue}$ metrics), 3D coordinate bijections ($\mathbf{Fin}_{27} \cong \text{Coord3D}$), exact rational quadrance/spread invariants, and `MetricEnvelopeSpace` bounded container validation using QuickCheck property testing.
 
-## 1. Mathematical Foundation & Metric Space Homomorphisms
+## 1. Mathematical Foundation & Metric Space Constraints
 
-Layer 2 Geometry constructs discrete metric state spaces with unified applicative bounds (`MonadicMetricSpace`):
+Layer 2 Geometry constructs discrete metric state spaces with bounded container envelopes (`MetricEnvelopeSpace`):
 
-1. **3D Coordinate Bijective Homomorphism**: $\text{scaleTransform}(\text{invertScaleTransform}(i)) \equiv i \pmod{27}$
+1. **3D Coordinate Bijection**: $\text{scaleTransform}(\text{invertScaleTransform}(i)) \equiv i \pmod{27}$
 2. **Chromogeometric Quadrance Linearity**: $Q_{Red} + Q_{Green} + Q_{Blue} \equiv Q_{Total}$
-3. **Monadic Metric Envelope Invariance**: $\text{validateMetricBound}(E(a)) \equiv \text{True}$
+3. **Metric Envelope Invariance**: $\text{validateMetricBound}(E(a)) \equiv \text{True}$
 4. **Poset Directional Step Order**: $x \le y \implies \text{step}(x) \le \text{step}(y)$
+
+## Reference for Category Theory Readers
+
+| Multiset / Maxel Algebra Construct | Category Theory Analogy |
+| :--- | :--- |
+| `MetricEnvelopeSpace` | `MonadicMetricSpace` applicative metric container |
+| `scaleTransform` / `invertScaleTransform` | Coordinate bijection isomorphism on $\text{Fin}_{27}$ |
 
 ```idris
 module Wiki.GeometryScaleTransformSpec

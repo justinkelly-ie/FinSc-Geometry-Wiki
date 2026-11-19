@@ -1,4 +1,4 @@
-# Finitist ChromoCategory QuickCheck Verification Specification
+# Finitist Chromogeometric Maxel & VexelSpace QuickCheck Verification Specification
 
 ```idris
 module Wiki.ChromoCategorySpec
@@ -13,7 +13,7 @@ import Wiki.Generators
 %default total
 ```
 
-## 1. Categorical Composition & Identity Invariants
+## 1. Associative Maxel Fusion & Identity Invariants
 
 $$\forall M_1, M_2, M_3 \in \text{Maxel}, \quad (M_3 \circ M_2) \circ M_1 \equiv M_3 \circ (M_2 \circ M_1)$$
 
